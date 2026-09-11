@@ -125,7 +125,13 @@ return {
 
         settings = {
           java = {
-            format = { enabled = true },
+            format = {
+              enabled = true,
+              settings = {
+                url = vim.fn.stdpath("config") .. "/format/eclipse-formatter.xml",
+                profile = "Custom-4Spaces",
+              },
+            },
             saveActions = { organizeImports = true },
             eclipse = { downloadSources = true },
             maven = { downloadSources = true },

@@ -39,3 +39,15 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank()
   end,
 })
+
+-- JVM filetypes use 4 spaces (Java, Kotlin, Groovy, Gradle), others keep global 2
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "java", "kotlin", "groovy", "gradle" },
+  group = vim.api.nvim_create_augroup("jvm-indent", { clear = true }),
+  callback = function()
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.softtabstop = 4
+    vim.opt_local.expandtab = true
+  end,
+})
