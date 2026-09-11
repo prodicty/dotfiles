@@ -129,7 +129,7 @@ return {
               enabled = true,
               settings = {
                 url = vim.fn.stdpath("config") .. "/format/eclipse-formatter.xml",
-                profile = "Custom-4Spaces",
+                profile = "Eclipse",
               },
             },
             saveActions = { organizeImports = true },
@@ -143,7 +143,7 @@ return {
                 "org.mockito.Mockito.*",
                 "org.mockito.ArgumentMatchers.*",
               },
-              importOrder = { "com", "java", "javax", "io", "org" },
+              importOrder = { "java", "javax", "io", "org", "com", "com.openwaygroup" },
             },
             sources = {
               organizeImports = {
