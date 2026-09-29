@@ -143,7 +143,7 @@ return {
                 "org.mockito.Mockito.*",
                 "org.mockito.ArgumentMatchers.*",
               },
-              importOrder = { "com", "io", "org", "javax", "java" },
+              importOrder = { "com", "io", "javax", "java", "org" },
             },
             sources = {
               organizeImports = {
