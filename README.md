@@ -16,13 +16,14 @@ you wish for your own setup.
 ### Laptop — Windows 11 + Fedora WSL2
 
 Work runs on a Windows 11 laptop. All actual development happens inside a Fedora
-Linux WSL2 distro, with Windows serving as the host for the terminal (WezTerm).
+Linux WSL2 (recently upgraded to WSL3) distro, with Windows serving as the host
+for the terminal (WezTerm).
 
 ### PC — CachyOS
 
 Personal machine is a dual-boot setup with a customised partition layout.
-Currently on CachyOS & KDE, exploring migration to Arch + Hyprland. As such,
-there is no bootstrapper setup for it yet.
+Currently on CachyOS & KDE, migrating to Hyprland. As such, bootstrapper
+alongside a rice config is in progress.
 
 ---
 

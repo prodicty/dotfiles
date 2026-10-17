@@ -95,31 +95,20 @@ DEV_PKGS=(
   xorg-x11-server-Xvfb
 )
 
-# Oracle Instant Client — installed via direct URL, checked via package name
+# Oracle Instant Client — install matching RPMs together
 ORACLE_IC_VERSION="23.9.0.25.07-1.el9"
 ORACLE_IC_BASE_URL="https://yum.oracle.com/repo/OracleLinux/OL9/oracle/instantclient23/x86_64/getPackage"
-declare -A ORACLE_PKGS=(
-  ["oracle-instantclient-basic"]="${ORACLE_IC_BASE_URL}/oracle-instantclient-basic-${ORACLE_IC_VERSION}.x86_64.rpm"
-  ["oracle-instantclient-sqlplus"]="${ORACLE_IC_BASE_URL}/oracle-instantclient-sqlplus-${ORACLE_IC_VERSION}.x86_64.rpm"
-)
 
-for pkg in "${DEV_PKGS[@]}"; do
-  if dnf_installed "$pkg"; then
-    skip "$pkg already installed."
-  else
-    sudo dnf install -y "$pkg"
-    ok "$pkg installed."
-  fi
-done
+ORACLE_BASIC_URL="${ORACLE_IC_BASE_URL}/oracle-instantclient-basic-${ORACLE_IC_VERSION}.x86_64.rpm"
+ORACLE_SQLPLUS_URL="${ORACLE_IC_BASE_URL}/oracle-instantclient-sqlplus-${ORACLE_IC_VERSION}.x86_64.rpm"
 
-for name in "${!ORACLE_PKGS[@]}"; do
-  if dnf_installed "$name"; then
-    skip "$name already installed."
-  else
-    sudo dnf install -y "${ORACLE_PKGS[$name]}"
-    ok "$name installed."
-  fi
-done
+if dnf_installed oracle-instantclient-basic &&
+  dnf_installed oracle-instantclient-sqlplus; then
+  skip "Oracle Instant Client Basic and SQL*Plus already installed."
+else
+  sudo dnf install -y "$ORACLE_BASIC_URL" "$ORACLE_SQLPLUS_URL"
+  ok "Oracle Instant Client Basic and SQL*Plus installed."
+fi
 
 # SQLPlus glogin.sql
 GLOGIN_SQL="/usr/lib/oracle/23/client64/lib/glogin.sql"
